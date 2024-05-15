@@ -3,19 +3,19 @@ import time
 import pytest
 from fastapi.testclient import TestClient
 
-from app.cassandra_client import CassandraClient
-from app.elasticsearch_client import ElasticsearchClient
+from shared.cassandra_client import CassandraClient
+from shared.elasticsearch_client import ElasticsearchClient
 from app.main import app
-from app.mongodb_client import MongoDBClient
-from app.redis_client import RedisClient
-from app.timescale import Timescale
+from shared.mongodb_client import MongoDBClient
+from shared.redis_client import RedisClient
+from shared.timescale import Timescale
 
 client = TestClient(app)
 
 
 @pytest.fixture(scope="session", autouse=True)
 def clear_dbs():
-    from app.database import engine
+    from shared.database import engine
     from app.sensors import models
     models.Base.metadata.drop_all(bind=engine)
     models.Base.metadata.create_all(bind=engine)

@@ -4,15 +4,15 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
-from app.cassandra_client import CassandraClient
-from app.redis_client import RedisClient
+from shared.cassandra_client import CassandraClient
+from shared.redis_client import RedisClient
 from . import models, schemas
 from .exceptions import NotCompatible
 from .schemas import SensorDataSearch, SensorSet, TemperatureValues, SensorsSetTemperatureItem, SensorsSetQuantityItem, \
     SensorsSetLowBatteryItem
-from ..elasticsearch_client import ElasticsearchClient
-from ..mongodb_client import MongoDBClient
-from ..timescale import Timescale
+from shared.elasticsearch_client import ElasticsearchClient
+from shared.mongodb_client import MongoDBClient
+from shared.timescale import Timescale
 
 _SENSORS = 'sensors'
 
