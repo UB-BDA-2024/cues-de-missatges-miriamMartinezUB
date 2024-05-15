@@ -28,6 +28,7 @@ class Publisher:
     def publish(self, message):
         self.channel.basic_publish(exchange='', routing_key=QUEUE_NAME, body=message.to_json())
         print(" [x] Sent %r" % message)
+    #     este publish lo llamare en los post del controllador, i lo que habia ahi lo eliminamos,el delete también lo podriamos enviar
     
     def close(self):
         self.conn.close()

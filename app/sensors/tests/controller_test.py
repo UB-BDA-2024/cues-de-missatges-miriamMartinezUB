@@ -24,7 +24,11 @@ def clear_dbs():
      cassandra.get_session().execute("DROP KEYSPACE IF EXISTS sensor")
      cassandra.close()
 
-     
+
 
 
 #TODO ADD all your tests in test_*.py files:
+
+
+# añadir todos los tests de todas las practicas se haga o no la parte de cola de mensajes pero con diferentes ficheros i
+# actualizamos los tests antiguos si es necesario correr los test solo levantando lo necesario, o postgress o redis etc

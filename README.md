@@ -97,6 +97,9 @@ Idealment, podeu probar els tests de les anteriors pràctiques per a comprobar q
 ```bash
 docker exec bdda_api sh -c "pytest"
 ```
+```bash
+docker exec bdda_api sh -c "pytest app/sensors/tests/controller_test.py"
+```
 
 Si tot ha anat bé, hauries de veure que tots els tests passen.
 
@@ -120,14 +123,3 @@ Aquesta pràctica té una puntuació màxima de 10 punts. La puntuació es repar
 - 6 punts: Correcta implementació del consumidor i el publicador. 
 - 2 punts: L'estil del codi i la seva estructura i documentació.
 - 2 punts: Correcta execució dels tests anterioris.
-
- 
-
-
-
-
-
-
-
-
-
