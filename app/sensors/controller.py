@@ -12,6 +12,7 @@ from shared.sensors.repository import DataCommand
 from shared.timescale import Timescale
 from shared.sensors import repository, schemas
 
+_SENSORS = 'sensors'
 
 def get_db():
     db = SessionLocal()
@@ -23,13 +24,14 @@ def get_db():
 
 def get_timescale():
     ts = Timescale()
+    ts.create_table()
     try:
         yield ts
     finally:
         ts.close()
 
-# Dependency to get redis client
 
+# Dependency to get redis client
 def get_redis_client():
     redis = RedisClient(host="redis")
     try:
@@ -37,14 +39,34 @@ def get_redis_client():
     finally:
         redis.close()
 
-# Dependency to get mongodb client
 
+# Dependency to get mongodb client
 def get_mongodb_client():
     mongodb = MongoDBClient(host="mongodb")
+    mongodb.getDatabase(_SENSORS)
     try:
         yield mongodb
     finally:
         mongodb.close()
+
+
+# Dependency to get elastic_search client
+def get_elastic_search():
+    es = ElasticsearchClient(host="elasticsearch")
+    try:
+        yield es
+    finally:
+        es.close()
+
+
+# Dependency to get cassandra client
+def get_cassandra_client():
+    cassandra = CassandraClient(hosts=["cassandra"])
+    cassandra.create_tables()
+    try:
+        yield cassandra
+    finally:
+        cassandra.close()
 
 
 publisher = Publisher()
